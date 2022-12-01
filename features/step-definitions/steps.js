@@ -5,13 +5,14 @@ Given('I am on the homepage', async () => {
 	await browser.url(`https://www.newegg.com/`)
 });
 Given('I close the promo banner if it appears', async () => {
-const $modal=await $('[class="modal-Website-img"]');
-const $button=await $('[class="close"]')
 try {
-    await $modal.toExist();
-}
-catch {
-    $button.click()}
+    const promo = await $(
+        '[class="close"]'
+      );
+    await promo.click();
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 When('As a user I entry the word Windows in the search bar', async () => {
