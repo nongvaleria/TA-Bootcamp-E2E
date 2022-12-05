@@ -2,13 +2,13 @@ const { Given, When, Then } = require('@wdio/cucumber-framework');
 
 
 Given('I am on the homepage', async () => {
-	await browser.url(`https://www.newegg.com/`)
+  await browser.url(`https://www.newegg.com/`)
 });
 Given('I close the promo banner if it appears', async () => {
-try {
+  try {
     const promo = await $(
-        '[class="close"]'
-      );
+      '[class="close"]'
+    );
     await promo.click();
   } catch (error) {
     console.error(error);
@@ -16,29 +16,29 @@ try {
 });
 
 When('As a user I entry the word Windows in the search bar', async () => {
-    const searchBar=await $('[class="ico ico-search"]');
-    const searchInput=await $('input[type="search"]')
-    await searchBar.click()
-    await searchInput.setValue('Windows');
+  const searchBar = await $('[class="ico ico-search"]');
+  const searchInput = await $('input[type="search"]')
+  await searchBar.click()
+  await searchInput.setValue('Windows');
 });
 
 When('I click the search button', async () => {
-    await $('[class="ico ico-search"]').click()
+  await $('[class="ico ico-search"]').click()
 });
 
 Then('I see that at least one item appears', async () => {
-    const list = await $(`[class="item-cell"]`)
-    await expect(list).toBeExisting();
+  const list = await $(`[class="item-cell"]`)
+  await expect(list).toBeExisting();
 });
 
 When("As a user I Open Today's Best Deals tab", async () => {
-await $('[id="trendingBanner_720202"]').click()
+  await $('[id="trendingBanner_720202"]').click()
 });
 
 When('I click on the Internet shop logo', async () => {
-await $('[class="header2021-logo-img"]').click()   
+  await $('[class="header2021-logo-img"]').click()
 });
 
 Then('I see that the main page is opened', async () => {
-    await expect(browser).toHaveUrl('https://www.newegg.com/')
+  await expect(browser).toHaveUrl('https://www.newegg.com/')
 })
